@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'PaginaPrincipal.dart';
+import 'restaurant_page.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -36,22 +37,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       appBar: AppBar(
-       
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-       
-        title: Text(widget.title),
+        title: const Text('Localeats'),
       ),
       body: Center(
         child: Column(
-        
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[const Text('Login - Registro')],
+          children: <Widget>[
+            const Text('Login - Registro'),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RestaurantPage(),
+                  ),
+                );
+              },
+              child: const Text('Ir a Restaurante'),
+            ),
+          ],
         ),
       ),
-     
     );
-  }
-}
+  } // cierre de build
+} // cierre de clase
