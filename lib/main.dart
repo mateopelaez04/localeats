@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'PaginaPrincipal.dart'; // Este import ahora sí se usa
+import 'pages/login_page.dart';
+import 'pages/registro_page.dart';
+import 'pages/inicio_page.dart';
+import 'pages/restaurant_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,49 +15,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Localeats',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black12),
-      ),
-      home: const MyHomePage(title: 'Localeats'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('Login - Registro'),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const PaginaPrincipal()),
-                );
-              },
-              child: const Text('Registrarse'),
-            ),
-          ],
+        scaffoldBackgroundColor: Colors.black, // fondo de todas las pantallas
+        brightness: Brightness.dark, // textos y widgets con estilo oscuro
+        primaryColor: Colors.white, // color primario (botones, etc.)
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.grey[900], // fondo de los textfields
+          hintStyle: TextStyle(color: Colors.grey[400]), // color del hint
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
         ),
       ),
+      //home: InicioPage(),
+      home: RestaurantPage(),
     );
   }
 }
