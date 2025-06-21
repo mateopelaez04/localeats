@@ -63,16 +63,28 @@ class _RestaurantPageState extends State<RestaurantPage> {
     }).toList();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Lista de Restaurantes')),
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: const Text('Lista de Restaurantes'),
+      ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              decoration: const InputDecoration(
+              style: const TextStyle(color: Colors.white),
+              decoration: InputDecoration(
                 labelText: 'Buscar por nombre',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.search),
+                labelStyle: const TextStyle(color: Colors.deepOrangeAccent),
+                border: const OutlineInputBorder(),
+                prefixIcon: const Icon(Icons.search, color: Colors.deepOrangeAccent),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.deepOrangeAccent, width: 2),
+                ),
               ),
               onChanged: (value) {
                 setState(() {
@@ -81,11 +93,20 @@ class _RestaurantPageState extends State<RestaurantPage> {
               },
             ),
           ),
-          Row(
-            children: [
-              Expanded(
-                child: DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(labelText: 'Ciudad'),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Column(
+              children: [
+                DropdownButtonFormField<String>(
+                  decoration: const InputDecoration(
+                    labelText: 'Ciudad',
+                    labelStyle: TextStyle(color: Colors.deepOrangeAccent),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                    ),
+                  ),
+                  dropdownColor: Colors.black,
+                  style: const TextStyle(color: Colors.white),
                   value: _ciudadSeleccionada,
                   items: ciudades.map((c) => DropdownMenuItem(value: c, child: Text(c))).toList(),
                   onChanged: (value) {
@@ -94,10 +115,17 @@ class _RestaurantPageState extends State<RestaurantPage> {
                     });
                   },
                 ),
-              ),
-              Expanded(
-                child: DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(labelText: 'Tipo de comida'),
+                const SizedBox(height: 12),
+                DropdownButtonFormField<String>(
+                  decoration: const InputDecoration(
+                    labelText: 'Tipo de comida',
+                    labelStyle: TextStyle(color: Colors.deepOrangeAccent),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                    ),
+                  ),
+                  dropdownColor: Colors.black,
+                  style: const TextStyle(color: Colors.white),
                   value: _tipoSeleccionado,
                   items: tipos.map((t) => DropdownMenuItem(value: t, child: Text(t))).toList(),
                   onChanged: (value) {
@@ -106,16 +134,17 @@ class _RestaurantPageState extends State<RestaurantPage> {
                     });
                   },
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Row(
               children: [
-                const Text('Puntos:'),
+                const Text('Puntos:', style: TextStyle(color: Colors.white)),
                 Expanded(
                   child: Slider(
+                    activeColor: Colors.deepOrangeAccent,
                     value: _puntosMaximos,
                     min: 0,
                     max: 10,
@@ -152,6 +181,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                     );
                   },
                   child: Card(
+                    color: Colors.grey[900],
                     margin: const EdgeInsets.all(12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,18 +202,18 @@ class _RestaurantPageState extends State<RestaurantPage> {
                             children: [
                               Text(
                                 r['nombre'],
-                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
                               ),
                               const SizedBox(height: 8),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('Ciudad: ${r['ciudad']}'),
-                                  Text('Puntos: ${r['puntos']}'),
+                                  Text('Ciudad: ${r['ciudad']}', style: const TextStyle(color: Colors.white)),
+                                  Text('Puntos: ${r['puntos']}', style: const TextStyle(color: Colors.white)),
                                 ],
                               ),
-                              Text('Tipo de Comida: ${r['tipo']}'),
-                              Text('Descripción: ${r['descripcion']}'),
+                              Text('Tipo de Comida: ${r['tipo']}', style: const TextStyle(color: Colors.white)),
+                              Text('Descripción: ${r['descripcion']}', style: const TextStyle(color: Colors.white)),
                             ],
                           ),
                         ),

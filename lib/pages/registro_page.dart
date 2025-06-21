@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localeats/components/my_button.dart';
 import 'package:localeats/components/my_textfield.dart';
+import 'package:localeats/pages/restaurant_page.dart';
 
 class RegistroPage extends StatelessWidget {
   RegistroPage({super.key});
@@ -16,9 +17,9 @@ class RegistroPage extends StatelessWidget {
     final username = usernameController.text.trim();
     final password = passwordController.text;
 
-    if (username.isEmpty && password.isEmpty && email.isEmpty) {
+    if (username.isEmpty || password.isEmpty || email.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           backgroundColor: Colors.redAccent, // Fondo del snackbar
           content: Text(
             'Por favor, llena todos los campos',
@@ -33,9 +34,10 @@ class RegistroPage extends StatelessWidget {
       return;
     }
 
-    if (username.isEmpty && password.isEmpty) {
-
-    }
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => RestaurantPage()),
+    );
   }
 
   @override
@@ -57,7 +59,7 @@ class RegistroPage extends StatelessWidget {
               const SizedBox(height: 50),
 
               // welcome back, you've been missed!
-              Text(
+              const Text(
                 'Crear Cuenta',
                 style: TextStyle(
                     color: Colors.white,

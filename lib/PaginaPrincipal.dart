@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'restaurant_page.dart'; // Asegúrate de que el archivo existe
+import 'pages/restaurant_page.dart'; // Asegúrate de que el archivo existe
 
 void main() {
   runApp(const MyApp());
