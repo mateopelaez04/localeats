@@ -7,8 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'PaginaPrincipal.dart';
-
 import 'package:localeats/main.dart';
 
 void main() {
